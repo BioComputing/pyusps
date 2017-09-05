@@ -1,5 +1,5 @@
-import urllib2
-import urllib
+from urllib.parse import urlencode
+from urllib.request import urlopen
 
 from lxml import etree
 try:
@@ -100,10 +100,10 @@ def _get_response(xml):
             ])
     url = '{api_url}?{params}'.format(
         api_url=api_url,
-        params=urllib.urlencode(params),
+        params=urlencode(params),
         )
 
-    res = urllib2.urlopen(url)
+    res = urlopen(url)
     res = etree.parse(res)
 
     return res
